@@ -15,16 +15,25 @@ export default function App() {
   const [getdprice, setdprice] = useState('');
   const [getoprice, setoprice] = useState('');
   const [getdper, setdper] = useState('');
+  const [geterror, seterror] = useState('');
+    const [getsprice, setsprice] = useState('');
   const [getSList, setSList] = useState([
     { key: '1', data: 'asad' },
     { key: '2', data: 'ahmed' },
     { key: '3', data: 'zahid' },
   ]);
   const calculatedprice = () => {
+    if(getdper<100 && getdper>0 && getoprice>0){
     var x = (getdper * getoprice) / 100
     x = getoprice - x
+    x =x.toFixed(2)
     console.log(x)
     setdprice(x)
+    setsprice(getoprice-x)
+    }
+    else{
+    seterror("There is error in your input, Re-check")
+  }
   };
   return (
     <View style={styles.container}>
@@ -43,11 +52,14 @@ export default function App() {
             setdper(text);
           }}
           value={getdper} />
+          <View style={styles.buttoncontainer}>
           <Button title="Calculate" style={styles.cbutton} onPress={() => calculatedprice()}></Button>
+          <Text style={styles.paragraph}>{geterror}</Text>
+          </View>
       </View>
       <View>
-        <Text>After Discount: {getdprice}</Text>
-        <Text>You saved: {getoprice-getdprice}</Text>
+        <Text style={styles.paragraph}>After Discount: {getdprice}</Text>
+        <Text style={styles.paragraph}>You saved: {getsprice}</Text>
       </View>
     </View>
   );
@@ -60,6 +72,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ecf0f1',
     padding: 8,
   },
+  buttoncontainer:{
+    padding:30,
+
+  },
   textinput: {
     width: '70%',
     borderColor: 'Black',
@@ -69,17 +85,17 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   paragraph: {
-    margin: 24,
+    margin: 14,
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   scrollviewtext: {
     fontSize: 18,
     color: 'white',
   },
   cbutton:{
-
+  
   },
   ScrollViewItem: {
     width: '100%',
