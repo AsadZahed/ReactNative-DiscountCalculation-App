@@ -1,12 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, StyleSheet, TextInput, Button,ScrollView ,TouchableOpacity} from 'react-native';
+import Constants from 'expo-constants';
+
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+        <View>
+           <Text style={styles.paragraph}>
+             Shopping Discount Calculator
+           </Text>
+        </View>
+        <View style={styles.InputContainer}>
+           <TextInput style={styles.textinput}
+                 placeholder="Orignal Price"
+           ></TextInput>
+           <TextInput style={styles.textinput}
+                 placeholder="Discount Percentage"
+           >
+           </TextInput>
+        </View>
     </View>
   );
 }
@@ -14,8 +27,22 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
+  },
+  textinput: {
+    width: '70%',
+    borderColor: 'Black',
+    borderWidth: 2,
+    borderRadius: 50,
+    fontSize: 16,
+    padding: 10,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
